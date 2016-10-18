@@ -1,0 +1,30 @@
+This is the README file for the STM Project.
+
+In this project, we aim to create two programs to run our Scanning Tunneling Microscope:
+<ul>
+<li>Java Program
+<li>Python Program
+</ul>
+
+Summary of the computer program required to run the STM:
+
+Basic Functions:
+<ol>
+<li>Adjust program parameters
+<li>Control Bias Voltage
+<li>Read tunneling current
+<li>Alter voltage applied to any of four Piezoelectric buzzer contacts
+<li>Store experimental data in a file
+<li>Process data file
+<li>Display processed data
+</ol>
+
+Composite Functions:
+<ol>
+<li>(Later)Control Z-stepper forwards and backwards for coarse motor control
+<li>Adjust X
+<li>Adjust Y
+<li>Adjust Z
+<li>Main Loop: Raster scan an area of the sample
+<li>(Later) Send signals to coarse adjustment
+</ol>
