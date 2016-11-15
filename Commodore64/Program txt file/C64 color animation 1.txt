@@ -1,0 +1,20 @@
+5 print "A"
+10 for i = 0 to 15
+15 poke 53280,i
+16 for j = 1 to 500:next
+18 next
+19 poke 53280,0
+20 for i=0 to 15
+25 poke 53281,0
+26 for j =1 to 500:next
+28 next
+29 poke53281,0
+30 for i = 0 to 15
+35 poke 646,i
+36 print"color"
+37 for j = 1 to 500 :next
+38 next
+39 poke 646, 14
+40 for j =1 to 500:next
+50 poke53280,14:poke646,14:poke 53281,6
+

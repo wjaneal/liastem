@@ -1,0 +1,63 @@
+*** VICE Version 2.4 ***
+OS compiled for: WIN64
+GUI compiled for: NATIVE
+CPU compiled for: X64
+Compiler used: MSVC
+Current OS: Unknown Windows version (2 6 2 10 1 768)
+Current CPU: Intel Pentium Pro/II/III/Celeron/Core/Core 2/Atom
+ 
+Welcome to x64, the free portable C64 Emulator.
+ 
+Current VICE team members:
+D. Lem, A. Matthies, M. Pottendorfer, S. Trikaliotis, M. van den Heuvel,
+C. Vogelgsang, F. Gennari, D. Kahlin, A. Lankila, Groepaz, I. Korb,
+E. Smith, O. Seibert, M. Sutton, U. Schulz, S. Haubenthal, T. Giesel,
+K. Zsolt.
+ 
+This is free software with ABSOLUTELY NO WARRANTY.
+See the "About VICE" command for more info.
+ 
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\C64\kernal'.
+C64MEM: Kernal rev #3.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\C64\basic'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\C64\chargen'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\PRINTER\mps803'.
+Palette: Loading palette `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\PRINTER\mps803.vpl'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\PRINTER\nl10-cbm'.
+Palette: Loading palette `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\PRINTER\mps803.vpl'.
+NL10: Printer driver initialized.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos1541'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\d1541II'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos1570'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos1571'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos1581'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos2000'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos4000'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos2031'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos2040'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos3040'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos4040'.
+Loading system file `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\DRIVES\dos1001'.
+Drive: Finished loading ROM images.
+video_dx9: Failed to prepare for rendering!
+Sound: Available sound devices: dx wmm dummy fs dump wav voc iff aiff mp3 soundmovie
+TFEARCH: LoadLibrary WPCAP.DLL failed!
+Keyboard: Loading keymap `D:\1Commodore64 documents and files!!!!!\WinVICE-2.4-x64!!!!!!!!!!!\C64\win_pos.vkm'.
+AUTOSTART: Autodetecting image type of `D:\1Commodore64 documents and files!!!!!\1C64 disk image\cynthcart 2.0.prg'.
+Filesystem Image: Unknown disk image `D:\1Commodore64 documents and files!!!!!\1C64 disk image\cynthcart 2.0.prg'.
+Tape: Error - Cannot open file `D:\1Commodore64 documents and files!!!!!\1C64 disk image\cynthcart 2.0.prg'
+AUTOSTART: Loading PRG file `D:\1Commodore64 documents and files!!!!!\1C64 disk image\cynthcart 2.0.prg' with virtual FS on unit #8.
+AUTOSTART: Resetting the machine to autostart 'CYNTHCART 2.0.PRG'
+AUTOSTART: Turning Warp mode on
+AUTOSTART: `D:\1Commodore64 documents and files!!!!!\1C64 disk image\cynthcart 2.0.prg' recognized as program/p00 file.
+Main CPU: starting at ($FFFC).
+Main CPU: RESET.
+Sound: Opened device `dx', speed 44100Hz, fragment size 23ms, buffer size 116ms
+reSID: MOS6581, filter on, sampling rate 44100Hz - fast
+AUTOSTART: Loading program 'CYNTHCART 2.0.PRG'
+AUTOSTART: Starting program.
+AUTOSTART: Done.
+AUTOSTART: Turning Warp mode off
+
+Exiting...
+Sound: Closing device `dx'

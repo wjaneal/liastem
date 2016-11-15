@@ -1,0 +1,20 @@
+
+>  Can anyone tell me the pin-out of the c64 video port
+ 
+Mairsil,
+Here is the A/V connector of the C64 and C128 shown facing the rear of
+the computer. Note that early versions of the C64 have a 5 pin DIN 
+connector while later versions have an 8 pin. The two are wired exactly
+the same, except that the 8 pin connector has a separated chroma (color)
+output. Earlier C64's didn't output separate Y/C video. 
+
+    no connection -----8           7-----no connection
+                             6---------chroma out
+       audio out -----3             1----- luminance (B & W signal)
+
+          audio in -----5         4----- composite video out
+                             2----- ground
+
+
+Ray Carlsen CET
+Carlsen Electronics
