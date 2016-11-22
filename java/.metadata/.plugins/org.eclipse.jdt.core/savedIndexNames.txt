@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+C:\Users\William Neal\Documents\GitHub\liastem\java\.metadata\.plugins\org.eclipse.jdt.core
+1257434484.index
