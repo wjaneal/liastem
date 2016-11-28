@@ -1,0 +1,39 @@
+' ******************************************************************************
+' swxJRNL.swj - journal recorded on 11/15/16 by USER
+' *****************************************************************************
+Dim swApp As Object
+
+Dim Part As Object
+Dim boolstatus As Boolean
+Dim longstatus As Long, longwarnings As Long
+
+Sub main()
+
+Set swApp = _
+Application.SldWorks
+
+swApp.ActivateDoc2 "æ’ª®≈Ã", False, longstatus
+Set Part = swApp.ActiveDoc
+Set Part = swApp.ActiveDoc
+Dim myModelView As Object
+Set myModelView = Part.ActiveView
+myModelView.FrameLeft = 0
+myModelView.FrameTop = 0
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+boolstatus = Part.Extension.SelectByID2("", "FACE", -0.040802285127121252, 0.0079999999998676685, -0.00060757524130394813, False, 0, Nothing, 0)
+Part.ClearSelection2 True
+Part.ShowNamedView2 "*Bottom", 6
+Part.ViewZoomtofit2
+Part.ShowNamedView2 "*Bottom", 6
+Part.ViewZoomtofit2
+Part.ViewZoomtofit2
+Part.ShowNamedView2 "*Top", 5
+swApp.ExitApp
+End Sub
