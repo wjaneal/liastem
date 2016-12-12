@@ -1,10 +1,10 @@
 
 #from Tkinter import *
-import serial
+import pyserial
 #import cv2
-from cv2 import *
+#from cv2 import *
 #from PIL import Image, ImageTk
-
+import tkinter
 
 class Arduino:
     def writechar(self, char):
@@ -15,7 +15,7 @@ class Arduino:
         #print s, line
 
     def connection(self):
-        return  serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=0.1)
+        return  pyserial.Serial('/dev/ttyACM0', baudrate=9600, timeout=0.1)
 
     
 class App:
@@ -24,7 +24,7 @@ class App:
         #After creating the widget, we immediately call the 
         #pack method to make the frame visible.
 
-        f = Frame(parent, background = "light blue", width = 600)
+        f = tkinter.Frame(parent, background = "light blue", width = 600)
         f.pack()
         
         #we then create an entry widget,pack it and then 
@@ -40,24 +40,24 @@ class App:
         #specifies a function, or (as in this
         #case) a bound method, which will be called when the button is clicked.
         
-        self.up = Button(f, text="Up", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterup).grid(row=0, column=0)
-        self.forward = Button(f, text="Forward", font = "Arial 24 bold",background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterforward).grid(row=1, column=0)
-        self.hover = Button(f, text="Hover", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow", height=2, width=10,command=self.helicopterhover).grid(row=0, column=1)
-        self.backwards = Button(f, text="Backwards", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterbackwards).grid(row=1, column=1)
-        self.down = Button(f, text="Down", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow", height=2, width=10,command=self.helicopterdown).grid(row=0, column=2)
-        self.vx0 = Button(f, text="Vx = 0", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicoptervx0).grid(row=1, column=2)
-        self.off = Button(f, text="Off", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow", height=2, width=10,command=self.helicopteroff).grid(row=0, column=3)
-        self.left = Button(f, text="Left", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterleft).grid(row=2, column=0)
-        self.vy0= Button(f, text="Vy = 0", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicoptervy0).grid(row=2, column=1)
-        self.right = Button(f, text="Right", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterright).grid(row=2, column=2)
-        self.turnleft = Button(f, text="Turn Left", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterturnleft).grid(row=3, column=0)
-        self.theta0= Button(f, text="Theta = 0", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicoptertheta0).grid(row=3, column=1)
-        self.turnright = Button(f, text="Turn Right", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterturnright).grid(row=3, column=2)
+        self.up = tkinter.Button(f, text="Up", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterup).grid(row=0, column=0)
+        self.forward = tkinter.Button(f, text="Forward", font = "Arial 24 bold",background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterforward).grid(row=1, column=0)
+        self.hover = tkinter.Button(f, text="Hover", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow", height=2, width=10,command=self.helicopterhover).grid(row=0, column=1)
+        self.backwards = tkinter.Button(f, text="Backwards", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterbackwards).grid(row=1, column=1)
+        self.down = tkinter.Button(f, text="Down", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow", height=2, width=10,command=self.helicopterdown).grid(row=0, column=2)
+        self.vx0 = tkinter.Button(f, text="Vx = 0", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicoptervx0).grid(row=1, column=2)
+        self.off = tkinter.Button(f, text="Off", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow", height=2, width=10,command=self.helicopteroff).grid(row=0, column=3)
+        self.left = tkinter.Button(f, text="Left", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterleft).grid(row=2, column=0)
+        self.vy0= tkinter.Button(f, text="Vy = 0", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicoptervy0).grid(row=2, column=1)
+        self.right = tkinter.Button(f, text="Right", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterright).grid(row=2, column=2)
+        self.turnleft = tkinter.Button(f, text="Turn Left", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterturnleft).grid(row=3, column=0)
+        self.theta0= tkinter.Button(f, text="Theta = 0", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicoptertheta0).grid(row=3, column=1)
+        self.turnright = tkinter.Button(f, text="Turn Right", font = "Arial 24 bold", background = "blue",foreground = "white", activebackground="yellow",height=2, width=10,command=self.helicopterturnright).grid(row=3, column=2)
 
-        self.auto = Button(f, text="Autoflight", font = "Arial 24 bold", background = "yellow",foreground = "black", activebackground="yellow", height=2, width=10,command=self.autoflight).grid(row=3,column=3)
-        self.openconn = Button(f,background = "green",activebackground="blue",foreground = "white",text="Open\n Connection", font = "Arial 24 bold", height=2, width=10,command=self.connect).grid(row=4,column=0)
-        self.closeconn = Button(f, background = "red", activebackground="red",foreground = "white", text="Close\n Connection", font = "Arial 24 bold", height=2, width=10,command=self.disconnect).grid(row=4,column=1)
-        self.exit = Button(f, text="Exit", font = "Arial 24 bold", activebackground="red",foreground = "white", background = "orange", height=2, width=10, command=f.destroy).grid(row=4,column=2)
+        self.auto = tkinter.Button(f, text="Autoflight", font = "Arial 24 bold", background = "yellow",foreground = "black", activebackground="yellow", height=2, width=10,command=self.autoflight).grid(row=3,column=3)
+        self.openconn = tkinter.Button(f,background = "green",activebackground="blue",foreground = "white",text="Open\n Connection", font = "Arial 24 bold", height=2, width=10,command=self.connect).grid(row=4,column=0)
+        self.closeconn = tkinter.Button(f, background = "red", activebackground="red",foreground = "white", text="Close\n Connection", font = "Arial 24 bold", height=2, width=10,command=self.disconnect).grid(row=4,column=1)
+        self.exit = tkinter.Button(f, text="Exit", font = "Arial 24 bold", activebackground="red",foreground = "white", background = "orange", height=2, width=10, command=f.destroy).grid(row=4,column=2)
 
 
         #self.im = Image.open("heli.jpg")
@@ -192,7 +192,7 @@ class App:
 
 Arduino_Conn = Arduino()
  
-root = Tk()
+root = tkinter.Tk()
 root.title('Helicopter Test Flight Application')
 app = App(root)
 
