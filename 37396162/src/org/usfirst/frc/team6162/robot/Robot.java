@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team6162.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6162.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team6162.robot.subsystems.Pneumatics;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -24,6 +26,7 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final Pneumatics pneumatics=new Pneumatics();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -40,12 +43,26 @@ public class Robot extends IterativeRobot {
     
    
     public void robotInit() {
+<<<<<<< HEAD
         server = CameraServer.getInstance();
         server.setQuality(50);
         server.startAutomaticCapture("cam0");
+=======
+
+    	//declare new limit switch
+
+    	
+
+    	limitSwitch= new DigitalInput(1);//declare new limit switch
+    	myRobot=new RobotDrive (0,1,2,3);
+    	myRobot.setExpiration(0.1);
+    	leftStick = new Joystick(0);
+    	rightStick = new Joystick(1);
+>>>>>>> branch 'master' of https://github.com/wjaneal/liastem
     }
     public void operatorControl(){
     	
+
     	while (limitSwitch.get()){
     		Timer.delay(0.005);
     	myRobot.tankDrive(leftStick, rightStick);
@@ -105,6 +122,8 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+
+    	limitSwitch= new DigitalInput(1);
     	limitSwitch= new DigitalInput(1);//declare new limit switch
     	myRobot=new RobotDrive (0,1,2,3);
     	myRobot.setExpiration(0.1);
@@ -118,12 +137,25 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-    }
+	         if(limitSwitch.get()){
+	    		Timer.delay(0.005);
+	    		pneumatics.setDS(true);
+	    	}
+	         else {
+	         pneumatics.setDS(false);
+	         }
+	}
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
         LiveWindow.run();
+        
+        while (limitSwitch.get()){
+    		Timer.delay(0);
+    		pneumatics.setDS(true);
+    	}
+    	pneumatics.setDS(false);
     }
 }
