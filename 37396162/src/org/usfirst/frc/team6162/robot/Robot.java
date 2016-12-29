@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team6162.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6162.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team6162.robot.subsystems.Pneumatics;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -22,6 +24,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final Pneumatics pneumatics=new Pneumatics();
 	public static OI oi;
 
     Command autonomousCommand;
@@ -39,8 +42,9 @@ public class Robot extends IterativeRobot {
     public void operatorControl(){
     	while (limitSwitch.get()){
     		Timer.delay(0);
-    	
+    		pneumatics.setDS(true);
     	}
+    	pneumatics.setDS(false);
     }
     
 	
