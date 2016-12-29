@@ -37,14 +37,9 @@ public class Robot extends IterativeRobot {
     DigitalInput limitSwitch;
     public void robotInit() {
     	//declare new limit switch
-    	limitSwitch= new DigitalInput(1);
     }
     public void operatorControl(){
-    	while (limitSwitch.get()){
-    		Timer.delay(0);
-    		pneumatics.setDS(true);
-    	}
-    	pneumatics.setDS(false);
+    	
     }
     
 	
@@ -100,6 +95,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	limitSwitch= new DigitalInput(1);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
@@ -108,12 +104,25 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-    }
+	         if(limitSwitch.get()){
+	    		Timer.delay(0.005);
+	    		pneumatics.setDS(true);
+	    	}
+	         else {
+	         pneumatics.setDS(false);
+	         }
+	}
     
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
         LiveWindow.run();
+        
+        while (limitSwitch.get()){
+    		Timer.delay(0);
+    		pneumatics.setDS(true);
+    	}
+    	pneumatics.setDS(false);
     }
 }
