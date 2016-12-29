@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
     public void operatorControl(){
     	
     	while (limitSwitch.get()){
-    		Timer.delay(0);
+    		Timer.delay(0.005);
     	myRobot.tankDrive(leftStick, rightStick);
     	}
     }
