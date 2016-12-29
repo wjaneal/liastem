@@ -1,22 +1,5 @@
 INDEX VERSION 1.127+C:\Users\William Neal\Documents\GitHub\liastem\java\.metadata\.plugins\org.eclipse.jdt.core
-3681335767.index
-3256285438.index
-188619105.index
-1904741536.index
-375126478.index
-3119455041.index
-3172068124.index
-1004716384.index
-2927524569.index
-3878457715.index
-4166838873.index
-1847969816.index
+75023293.index
 1257434484.index
-2831536327.index
-2167310551.index
-2312443017.index
-486699731.index
-1583927216.index
-564630085.index
-1156016802.index
-2017505986.index
+3593462352.index
+2787541297.index

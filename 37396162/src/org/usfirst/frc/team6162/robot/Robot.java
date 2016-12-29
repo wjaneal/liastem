@@ -3,7 +3,8 @@ package org.usfirst.frc.team6162.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
-
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -14,6 +15,7 @@ import org.usfirst.frc.team6162.robot.subsystems.Pneumatics;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Joystick;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -35,11 +37,31 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     DigitalInput limitSwitch;
+    RobotDrive myRobot;
+    Joystick leftStick;
+    Joystick rightStick;
+    
+   
     public void robotInit() {
+
     	//declare new limit switch
+
+    	
+    	limitSwitch= new DigitalInput(1);//declare new limit switch
+    	myRobot=new RobotDrive (0,1,2,3);
+    	myRobot.setExpiration(0.1);
+    	leftStick = new Joystick(0);
+    	rightStick = new Joystick(1);
+//>>>>>>> branch 'master' of https://github.com/wjaneal/liastem.git
     }
     public void operatorControl(){
     	
+
+    	while (limitSwitch.get()){
+    		Timer.delay(0.005);
+    	myRobot.tankDrive(leftStick, rightStick);
+    	}
+//>>>>>>> branch 'master' of https://github.com/wjaneal/liastem.git
     }
     
 	
