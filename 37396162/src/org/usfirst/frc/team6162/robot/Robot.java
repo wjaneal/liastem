@@ -41,11 +41,7 @@ public class Robot extends IterativeRobot {
    
     public void robotInit() {
     	
-    	limitSwitch= new DigitalInput(1);//declare new limit switch
-    	myRobot=new RobotDrive (0,1,2,3);
-    	myRobot.setExpiration(0.1);
-    	leftStick = new Joystick(0);
-    	rightStick = new Joystick(1);
+    	
     }
     public void operatorControl(){
     	
@@ -108,6 +104,11 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	limitSwitch= new DigitalInput(1);//declare new limit switch
+    	myRobot=new RobotDrive (0,1,2,3);
+    	myRobot.setExpiration(0.1);
+    	leftStick = new Joystick(0);
+    	rightStick = new Joystick(1);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
