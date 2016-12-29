@@ -47,12 +47,12 @@ public class Robot extends IterativeRobot {
     	//declare new limit switch
 
     	
+
     	limitSwitch= new DigitalInput(1);//declare new limit switch
     	myRobot=new RobotDrive (0,1,2,3);
     	myRobot.setExpiration(0.1);
     	leftStick = new Joystick(0);
     	rightStick = new Joystick(1);
-//>>>>>>> branch 'master' of https://github.com/wjaneal/liastem.git
     }
     public void operatorControl(){
     	
@@ -61,7 +61,6 @@ public class Robot extends IterativeRobot {
     		Timer.delay(0.005);
     	myRobot.tankDrive(leftStick, rightStick);
     	}
-//>>>>>>> branch 'master' of https://github.com/wjaneal/liastem.git
     }
     
 	
@@ -117,7 +116,13 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+
     	limitSwitch= new DigitalInput(1);
+    	limitSwitch= new DigitalInput(1);//declare new limit switch
+    	myRobot=new RobotDrive (0,1,2,3);
+    	myRobot.setExpiration(0.1);
+    	leftStick = new Joystick(0);
+    	rightStick = new Joystick(1);
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
