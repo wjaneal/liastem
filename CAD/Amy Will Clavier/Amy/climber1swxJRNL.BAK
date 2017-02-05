@@ -1,0 +1,139 @@
+' ******************************************************************************
+' swxJRNL.swj - journal recorded on 02/02/17 by USER
+' *****************************************************************************
+Dim swApp As Object
+
+Dim Part As Object
+Dim boolstatus As Boolean
+Dim longstatus As Long, longwarnings As Long
+
+Sub main()
+
+Set swApp = _
+Application.SldWorks
+
+swApp.ActivateDoc2 "outer frame", False, longstatus
+Set Part = swApp.ActiveDoc
+Set Part = swApp.ActiveDoc
+Dim myModelView As Object
+Set myModelView = Part.ActiveView
+myModelView.FrameLeft = 0
+myModelView.FrameTop = 0
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+retval = swApp.Callback ( "fworks@FWPlaybackManager", 0, "SetAutomaticFeatureRecognition 0")
+
+retval = swApp.Callback ( "fworks@FWPlaybackManager", 0, "SetInteractiveFeatureRecognition 1")
+
+'FeatureWorks Block ClearSelection
+#IF FWORKS_ENABLE_SWAPI_CALLS THEN
+#END IF
+'FeatureWorks Block ForceRebuild
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.02101065150489994, 0.085984348694223209
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.01050532575244997, 0.039083794861010546
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.01050532575244997, 0.039083794861010546
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.017508876254083282, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.01050532575244997, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.017508876254083282, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0070035505016333129, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.017508876254083282, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0070035505016333129, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.01050532575244997, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.01050532575244997, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.01050532575244997, -0.023450276916606328
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0070035505016333129, -0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0070035505016333129, -0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0070035505016333129, -0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0035017752508166564, -0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0.0070035505016333129, 0
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, -0.0078167589722021105
+boolstatus = Part.Extension.SelectByID2("", "FACE", -0.10850348143975452, 0.23834418330584128, 0.73754721143460955, False, 0, Nothing, 0)
+Part.SketchManager.InsertSketch True
+Part.ClearSelection2 True
+Part.SketchManager.InsertSketch True
+boolstatus = Part.Extension.SelectByID2("", "EDGE", -0.10850669090626752, 0.21186974492789545, 0.75738646739012694, False, 0, Nothing, 0)
+boolstatus = Part.Extension.SelectByID2("", "FACE", -0.10850348143975452, 0.22834535432347991, 0.75166507028504981, False, 0, Nothing, 0)
+Part.ClearSelection2 True
+boolstatus = Part.Extension.SelectByID2("side bar1 outerframe-1-solid1", "BODYFEATURE", 0, 0, 0, False, 0, Nothing, 0)
+boolstatus = Part.Extension.SelectByID2("side bar1 outerframe-1-solid1", "BODYFEATURE", 0, 0, 0, False, 0, Nothing, 0)
+Part.ActivateSelectedFeature
+Part.ClearSelection2 True
+boolstatus = Part.Extension.SelectByID2("", "EDGE", -0.10846831152906589, 0.2742030084946947, 0.73653858385250004, False, 0, Nothing, 0)
+boolstatus = Part.Extension.SelectByID2("", "FACE", -0.10850348143975452, 0.2357278579539468, 0.76467196551704575, False, 0, Nothing, 0)
+boolstatus = Part.Extension.SelectByID2("", "FACE", -0.10850348143975452, 0.23457724529471591, 0.7645949085859769, False, 0, Nothing, 0)
+retval = swApp.Callback ( "fworks@FWPlaybackManager", 0, "SetAutoDimOptions 0 0 0 0")
+retval = swApp.Callback ( "fworks@FWPlaybackManager", 0, "SetAutoRelOptions 0")
+retval = swApp.Callback ( "fworks@FWPlaybackManager", 0, "ResizeFeature")
+
+'FeatureWorks Block ClearSelection
+#IF FWORKS_ENABLE_SWAPI_CALLS THEN
+boolstatus = Part.SetUserPreferenceToggle(swUserPreferenceToggle_e.swViewSketchRelations, False)
+Part.ClearSelection2 True
+Part.ClearSelection2 True
+Part.SketchManager.InsertSketch True
+Part.ClearSelection2 True
+Part.SketchManager.InsertSketch True
+Part.ClearSelection2 True
+Part.SketchManager.InsertSketch True
+Part.ClearSelection2 True
+Part.SketchManager.InsertSketch True
+boolstatus = Part.SetUserPreferenceToggle(swUserPreferenceToggle_e.swViewSketchRelations, True)
+#END IF
+'FeatureWorks Block ForceRebuild
+' MSGBOX
+' Save changes to outer frame?
+
+swApp.ExitApp
+End Sub

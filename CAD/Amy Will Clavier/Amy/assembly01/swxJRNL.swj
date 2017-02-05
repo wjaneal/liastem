@@ -1,0 +1,69 @@
+' ******************************************************************************
+' swxJRNL.swj - journal recorded on 01/29/17 by USER
+' *****************************************************************************
+Dim swApp As Object
+
+Dim Part As Object
+Dim boolstatus As Boolean
+Dim longstatus As Long, longwarnings As Long
+
+Sub main()
+
+Set swApp = _
+Application.SldWorks
+
+swApp.ActivateDoc2 "ball collecter motor", False, longstatus
+Set Part = swApp.ActiveDoc
+Set Part = swApp.ActiveDoc
+Dim myModelView As Object
+Set myModelView = Part.ActiveView
+myModelView.FrameLeft = 0
+myModelView.FrameTop = 0
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+Set myModelView = Part.ActiveView
+myModelView.FrameState = swWindowState_e.swWindowMaximized
+boolstatus = Part.Extension.SelectByID2("Boss-Extrude4", "BODYFEATURE", 0, 0, 0, False, 0, Nothing, 0)
+boolstatus = Part.Extension.SelectByID2("Boss-Extrude5", "BODYFEATURE", 0, 0, 0, True, 0, Nothing, 0)
+boolstatus = Part.Extension.SelectByID2("Boss-Extrude4", "BODYFEATURE", 0, 0, 0, False, 0, Nothing, 0)
+Part.EditDelete
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, 0.039083794861010546
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, 0.031267035888808442
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, 0.0078167589722021105
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter 0, 0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0035017752508166564, 0.046900553833212656
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.014007101003266626, 0.10943462561082955
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.02101065150489994, 0.14851842047184008
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0035017752508166564, 0.10161786663862743
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.054717312805414774
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.031267035888808442
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.046900553833212656
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.031267035888808442
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.046900553833212656
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.046900553833212656
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0035017752508166564, 0.015633517944404221
+Set myModelView = Part.ActiveView
+myModelView.RotateAboutCenter -0.0070035505016333129, 0.015633517944404221
+boolstatus = Part.Extension.SelectByID2("Sketch4", "SKETCH", 0, 0, 0, False, 0, Nothing, 0)
+Part.EditDelete
+boolstatus = Part.Extension.SelectByID2("", "FACE", 0.041553998090080313, 0.019496835343488783, -0.004745288989056462, False, 0, Nothing, 0)
+Part.ClearSelection2 True
+swApp.ExitApp
+End Sub
