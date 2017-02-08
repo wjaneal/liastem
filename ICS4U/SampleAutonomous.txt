@@ -1,0 +1,28 @@
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.Timer;
+
+public class RobotTemplate extends SimpleRobot
+{
+RobotDrive drive6162 = new RobotDrive(0,1,2,3);
+Joystick C0 = new Joystick(0);
+public void autonomous(){
+	while(isAutonomous() && isEnabled(){
+
+	while(isOperatorControl() && isEnabled()){
+	getWatchdog().setEnabled(true);
+		drive6162.drive(0.1,0.1,0.1,0.1);
+		Timer.delay(1);
+		}
+	}	
+
+public void operatorControl(){
+	while(isOperatorControl() && isEnabled()){
+	getWatchdog().setEnabled(true);
+	drive.arcadeDrive(C0);
+	}	
+}
+
+
+
