@@ -63,9 +63,16 @@ public class Robot extends SampleRobot {
 		switch (autoSelected) {
 		case customAuto:
 			myRobot.setSafetyEnabled(false);
-			myRobot.drive(-0.5, 1.0); // spin at half speed
-			Timer.delay(2.0); // for 2 seconds
+			myRobot.drive(0.1, 1.0); // spin at half speed, first is speed second is curve
+			Timer.delay(5.0); // for 2 seconds
 			myRobot.drive(0.0, 0.0); // stop robot
+			Timer.delay(3.0);
+			myRobot.drive(0.1,0.0);
+			Timer.delay(1.0);
+			myRobot.drive(-0.1,0.0 );
+			Timer.delay(2.0);
+			
+			
 			break;
 		case defaultAuto:
 		default:
