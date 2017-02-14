@@ -2,6 +2,8 @@ package org.usfirst.frc.team6162.robot;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SampleRobot;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -25,11 +27,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * instead if you're new.
  */
 public class Robot extends SampleRobot {
-	RobotDrive myRobot = new RobotDrive(0, 1);
+	RobotDrive myRobot = new RobotDrive(0,1,2,3);
 	Joystick stick = new Joystick(0);
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	SendableChooser<String> chooser = new SendableChooser<>();
+	private SpeedController ballCollector = new Talon(4);
+	private SpeedController shooter = new Talon(6);
+	private SpeedController door = new Talon(7);
+	
 
 	public Robot() {
 		myRobot.setExpiration(0.1);
@@ -63,11 +69,11 @@ public class Robot extends SampleRobot {
 		switch (autoSelected) {
 		case customAuto:
 			myRobot.setSafetyEnabled(false);
-			myRobot.drive(0.1, 1.0); // spin at half speed, first is speed second is curve
-			Timer.delay(5.0); // for 2 seconds
+			myRobot.drive(0.3, 0.0); // spin at half speed, first is speed second is curve
+			Timer.delay(3.0); // for 2 seconds
 			myRobot.drive(0.0, 0.0); // stop robot
-			Timer.delay(3.0);
-			myRobot.drive(0.1,0.0);
+			Timer.delay(1.0);
+			myRobot.drive(0.3,0.1);
 			Timer.delay(1.0);
 			myRobot.drive(-0.1,0.0 );
 			Timer.delay(2.0);
@@ -93,6 +99,26 @@ public class Robot extends SampleRobot {
 		while (isOperatorControl() && isEnabled()) {
 			myRobot.arcadeDrive(stick); // drive with arcade style (use right
 										// stick)
+			if(stick.getRawButton(1)==true){ //button 1 is A
+				ballCollector.set(0.5);
+			}else{
+				ballCollector.set(0);
+			}
+			if(stick.getRawButton(2)==true){ //button 2 is B
+				shooter.set(1);
+			}else{
+				shooter.set(0);
+			}
+			if(stick.getRawButton(3)==true && stick.getRawButton(4)==false){ //button 3 is X
+				door.set(0.5);
+			}else{
+				door.set(0);
+			}
+			if(stick.getRawButton(4)==true && stick.getRawButton(3)==false){ //button 4 is Y
+				door.set(-0.5);
+			}else{
+				door.set(0);
+			}
 			Timer.delay(0.005); // wait for a motor update time
 		}
 	}
