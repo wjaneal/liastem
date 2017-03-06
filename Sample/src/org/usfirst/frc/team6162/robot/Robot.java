@@ -35,7 +35,10 @@ public class Robot extends SampleRobot {
 	private SpeedController ballCollector = new Talon(4);
 	private SpeedController shooter = new Talon(6);
 	private SpeedController door = new Talon(7);
-	
+	private SpeedController climber= new Talon(8);
+	private SpeedController climber2= new Talon(9);
+			
+			
 
 	public Robot() {
 		myRobot.setExpiration(0.1);
@@ -110,14 +113,14 @@ public class Robot extends SampleRobot {
 				shooter.set(0);
 			}
 			if(stick.getRawButton(3)==true && stick.getRawButton(4)==false){ //button 3 is X
-				door.set(0.5);
+				climber.set(0.5);
 			}else{
-				door.set(0);
+				climber.set(0);
 			}
 			if(stick.getRawButton(4)==true && stick.getRawButton(3)==false){ //button 4 is Y
-				door.set(-0.5);
+				climber.set(-0.5);
 			}else{
-				door.set(0);
+				climber.set(0);
 			}
 			Timer.delay(0.005); // wait for a motor update time
 		}
