@@ -1,16 +1,15 @@
 package org.usfirst.frc.team6162.robot;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SampleRobot;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.networktables.*;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+//import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
  * This is a demo program showing the use of the RobotDrive class. The
@@ -29,29 +28,31 @@ import edu.wpi.first.wpilibj.networktables.*;
  * be much more difficult under this system. Use IterativeRobot or Command-Based
  * instead if you're new.
  */
+
+
+
 public class Robot extends SampleRobot {
-	RobotDrive myRobot = new RobotDrive(0,1,2,3);
+	RobotDrive myRobot = new RobotDrive(0, 1, 2, 3);
+	NetworkTable table;
+	SPI.Port port0 = SPI.Port.kOnboardCS0;
+	ADXRS450_Gyro gg = new ADXRS450_Gyro(port0);
+	
 	Joystick stick = new Joystick(0);
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	SendableChooser<String> chooser = new SendableChooser<>();
-	private SpeedController ballCollector = new Talon(4);
-	private SpeedController shooter = new Talon(6);
-	private SpeedController door = new Talon(7);
-	private Gyro gyro = new AnalogGyro(1);
-	NetworkTable table;
-	
-
+	double angle;
 	public Robot() {
 		myRobot.setExpiration(0.1);
 	}
-
+	
+	
 	@Override
 	public void robotInit() {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto modes", chooser);
-		table = NetworkTable.getTable("dataTable");
+		gg.reset();
 	}
 
 	/**
@@ -71,14 +72,30 @@ public class Robot extends SampleRobot {
 		// String autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
-		gyro.reset();
+		while(isAutonomous()){
+			angle = gg.getAngle();
+			table.putNumber("Angle", angle);
+			double kp = 0.05;
+			
+			while(angle != 180){
+				angle = gg.getAngle();
+				//myRobot.drive(0.1+0.1*(180-angle)/180, -1.0);
+				myRobot.drive(0.3, -1.0*kp);
+				angle = gg.getAngle();
+				table.putNumber("Angle", angle);
+				
+			}
+		}
+		
+		
+		
+		
 		switch (autoSelected) {
 		case customAuto:
 			myRobot.setSafetyEnabled(false);
-			
-			
-			
-			
+			myRobot.drive(-0.5, 1.0); // spin at half speed
+			Timer.delay(2.0); // for 2 seconds
+			myRobot.drive(0.0, 0.0); // stop robot
 			break;
 		case defaultAuto:
 		default:
@@ -95,33 +112,12 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
-		double x = 0;
-		double y = 0;
 		myRobot.setSafetyEnabled(true);
 		while (isOperatorControl() && isEnabled()) {
 			
+			//if button 1: call drive straight method
 			myRobot.arcadeDrive(stick); // drive with arcade style (use right
 										// stick)
-			if(stick.getRawButton(1)==true){ //button 1 is A
-				ballCollector.set(0.5);
-			}else{
-				ballCollector.set(0);
-			}
-			if(stick.getRawButton(2)==true){ //button 2 is B
-				shooter.set(1);
-			}else{
-				shooter.set(0);
-			}
-			if(stick.getRawButton(3)==true && stick.getRawButton(4)==false){ //button 3 is X
-				door.set(0.5);
-			}else{
-				door.set(0);
-			}
-			if(stick.getRawButton(4)==true && stick.getRawButton(3)==false){ //button 4 is Y
-				door.set(-0.5);
-			}else{
-				door.set(0);
-			}
 			Timer.delay(0.005); // wait for a motor update time
 		}
 	}
