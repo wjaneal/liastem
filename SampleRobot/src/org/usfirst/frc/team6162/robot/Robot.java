@@ -76,15 +76,17 @@ public class Robot extends SampleRobot {
 			angle = gg.getAngle();
 			table.putNumber("Angle", angle);
 			double kp = 0.05;
-			
-			while(angle != 180){
+			/*while(angle <= 180){
 				angle = gg.getAngle();
 				//myRobot.drive(0.1+0.1*(180-angle)/180, -1.0);
 				myRobot.drive(0.3, -1.0*kp);
 				angle = gg.getAngle();
 				table.putNumber("Angle", angle);
 				
-			}
+			}*/
+			myRobot.drive(1, kp);
+			Timer.delay(0.1);
+			
 		}
 		
 		
@@ -98,7 +100,7 @@ public class Robot extends SampleRobot {
 			myRobot.drive(0.0, 0.0); // stop robot
 			break;
 		case defaultAuto:
-		default:
+		default:	
 			myRobot.setSafetyEnabled(false);
 			myRobot.drive(-0.5, 0.0); // drive forwards half speed
 			Timer.delay(2.0); // for 2 seconds
