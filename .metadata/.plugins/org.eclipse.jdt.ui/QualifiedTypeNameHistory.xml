@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SpeedController"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.Talon"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.interfaces.Gyro"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.AnalogGyro"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SPI"/>
-<fullyQualifiedTypeName name="edu.wpi.first.wpilibj.SPI.Port"/>
-</qualifiedTypeNameHistroy>

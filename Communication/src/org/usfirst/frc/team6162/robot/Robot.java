@@ -8,9 +8,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.networktables.*;
 
 /**
  * This is a demo program showing the use of the RobotDrive class. The
@@ -31,24 +28,15 @@ import edu.wpi.first.wpilibj.networktables.*;
  */
 public class Robot extends SampleRobot {
 	RobotDrive myRobot = new RobotDrive(0,1,2,3);
-	Joystick stick = new Joystick(0);
+	Joystick XBoxController = new Joystick(0);
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	SendableChooser<String> chooser = new SendableChooser<>();
+	//Set up motors:
 	private SpeedController ballCollector = new Talon(4);
 	private SpeedController shooter = new Talon(6);
 	private SpeedController door = new Talon(7);
-<<<<<<< HEAD
-	private Gyro gyro = new AnalogGyro(1);
-	NetworkTable table;
 	
-=======
-	private SpeedController climber= new Talon(8);
-	private SpeedController climber2= new Talon(9);
-			
-			
->>>>>>> 64def61f7790b0e6b93554eaccfb2e6f479e22a3
-
 	public Robot() {
 		myRobot.setExpiration(0.1);
 	}
@@ -58,7 +46,6 @@ public class Robot extends SampleRobot {
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto modes", chooser);
-		table = NetworkTable.getTable("dataTable");
 	}
 
 	/**
@@ -78,14 +65,13 @@ public class Robot extends SampleRobot {
 		// String autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
-		gyro.reset();
+
 		switch (autoSelected) {
 		case customAuto:
 			myRobot.setSafetyEnabled(false);
-			
-			
-			
-			
+			myRobot.drive(-0.5, 1.0); // spin at half speed
+			Timer.delay(2.0); // for 2 seconds
+			myRobot.drive(0.0, 0.0); // stop robot
 			break;
 		case defaultAuto:
 		default:
@@ -102,33 +88,53 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
-		double x = 0;
-		double y = 0;
 		myRobot.setSafetyEnabled(true);
 		while (isOperatorControl() && isEnabled()) {
 			
-			myRobot.arcadeDrive(stick); // drive with arcade style (use right
+			//Ball Collector Code
+			if(XBoxController.getRawButton(1)==true){
+				if(ballCollector.get()==0){
+					ballCollector.set(0.5);
+					}
+				else{
+					ballCollector.set(0);
+				}
+			}
+			
+			//Shooter Code
+			if(XBoxController.getRawButton(2)==true){
+				if(shooter.get()==0){
+					shooter.set(0.6);
+					}
+				else{
+					shooter.set(0);
+				}
+			}
+			
+
+			
+			//Door Code
+			
+			//Open the door
+			if(XBoxController.getRawButton(3)==true  && XBoxController.getRawButton(4)==false){				
+					door.set(0.5);
+					}
+				else{
+					door.set(0);
+			}
+			
+			if(XBoxController.getRawButton(4)==false && XBoxController.getRawButton(3)==false){
+					door.set(-0.5);
+					}
+				else{
+					door.set(0);
+			}
+			
+						
+
+			
+			myRobot.arcadeDrive(XBoxController); // drive with arcade style (use right
 										// stick)
-			if(stick.getRawButton(1)==true){ //button 1 is A
-				ballCollector.set(0.5);
-			}else{
-				ballCollector.set(0);
-			}
-			if(stick.getRawButton(2)==true){ //button 2 is B
-				shooter.set(1);
-			}else{
-				shooter.set(0);
-			}
-			if(stick.getRawButton(3)==true && stick.getRawButton(4)==false){ //button 3 is X
-				climber.set(0.5);
-			}else{
-				climber.set(0);
-			}
-			if(stick.getRawButton(4)==true && stick.getRawButton(3)==false){ //button 4 is Y
-				climber.set(-0.5);
-			}else{
-				climber.set(0);
-			}
 			Timer.delay(0.005); // wait for a motor update time
 		}
 	}

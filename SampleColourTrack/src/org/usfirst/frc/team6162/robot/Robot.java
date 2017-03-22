@@ -2,15 +2,20 @@ package org.usfirst.frc.team6162.robot;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SampleRobot;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.networktables.*;
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.vision.VisionRunner;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+
+
 
 /**
  * This is a demo program showing the use of the RobotDrive class. The
@@ -35,19 +40,18 @@ public class Robot extends SampleRobot {
 	final String defaultAuto = "Default";
 	final String customAuto = "My Auto";
 	SendableChooser<String> chooser = new SendableChooser<>();
-	private SpeedController ballCollector = new Talon(4);
-	private SpeedController shooter = new Talon(6);
-	private SpeedController door = new Talon(7);
-<<<<<<< HEAD
-	private Gyro gyro = new AnalogGyro(1);
-	NetworkTable table;
 	
-=======
-	private SpeedController climber= new Talon(8);
-	private SpeedController climber2= new Talon(9);
-			
-			
->>>>>>> 64def61f7790b0e6b93554eaccfb2e6f479e22a3
+	private static final int IMG_WIDTH = 320;
+	private static final int IMG_HEIGHT = 240;
+	
+	private VisionThread visionThread;
+	private double centerX = 0.0;
+	private double centerY = 0.0;
+	private double rw=30;
+	private double rh=40;
+	
+	private final Object imgLock = new Object();
+	RobotFunctions RF;
 
 	public Robot() {
 		myRobot.setExpiration(0.1);
@@ -55,10 +59,25 @@ public class Robot extends SampleRobot {
 
 	@Override
 	public void robotInit() {
+		RF = new RobotFunctions();
 		chooser.addDefault("Default Auto", defaultAuto);
 		chooser.addObject("My Auto", customAuto);
 		SmartDashboard.putData("Auto modes", chooser);
-		table = NetworkTable.getTable("dataTable");
+		  UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		    
+		    visionThread = new VisionThread(camera, new Grip(), pipeline -> {
+		        if (pipeline.equals(null)) {
+		            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+		            synchronized (imgLock) {
+		                centerX = r.x + (r.width / 2);//Find the centre of the X Value
+		                centerY = r.y + (r.height / 2);
+		                rw = r.width;
+		                rh = r.height;
+		            }
+		        }
+		    });
+		    visionThread.start();
 	}
 
 	/**
@@ -78,14 +97,13 @@ public class Robot extends SampleRobot {
 		// String autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
 		System.out.println("Auto selected: " + autoSelected);
-		gyro.reset();
+
 		switch (autoSelected) {
 		case customAuto:
 			myRobot.setSafetyEnabled(false);
-			
-			
-			
-			
+			myRobot.drive(-0.5, 1.0); // spin at half speed
+			Timer.delay(2.0); // for 2 seconds
+			myRobot.drive(0.0, 0.0); // stop robot
 			break;
 		case defaultAuto:
 		default:
@@ -102,33 +120,12 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
-		double x = 0;
-		double y = 0;
 		myRobot.setSafetyEnabled(true);
 		while (isOperatorControl() && isEnabled()) {
-			
 			myRobot.arcadeDrive(stick); // drive with arcade style (use right
 										// stick)
-			if(stick.getRawButton(1)==true){ //button 1 is A
-				ballCollector.set(0.5);
-			}else{
-				ballCollector.set(0);
-			}
-			if(stick.getRawButton(2)==true){ //button 2 is B
-				shooter.set(1);
-			}else{
-				shooter.set(0);
-			}
-			if(stick.getRawButton(3)==true && stick.getRawButton(4)==false){ //button 3 is X
-				climber.set(0.5);
-			}else{
-				climber.set(0);
-			}
-			if(stick.getRawButton(4)==true && stick.getRawButton(3)==false){ //button 4 is Y
-				climber.set(-0.5);
-			}else{
-				climber.set(0);
-			}
+			RF.getRange(rw,rh);
+			RF.driverStationComm();
 			Timer.delay(0.005); // wait for a motor update time
 		}
 	}
@@ -140,3 +137,4 @@ public class Robot extends SampleRobot {
 	public void test() {
 	}
 }
+
